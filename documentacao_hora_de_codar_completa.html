@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hora de Codar — Documentação Completa</title>
+<style>
+:root{
+    --bg:#f4f6f8;
+    --card:#ffffff;
+    --text:#17202a;
+    --muted:#64748b;
+    --border:#dbe2ea;
+    --primary:#0f766e;
+    --primary-dark:#115e59;
+    --sidebar:#0f172a;
+    --code:#111827;
+    --code-text:#e5e7eb;
+    --success:#166534;
+    --danger:#b91c1c;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.5;
+}
+.layout{display:grid;grid-template-columns:270px 1fr;min-height:100vh}
+.sidebar{
+    position:sticky;
+    top:0;
+    height:100vh;
+    padding:26px 17px;
+    background:var(--sidebar);
+    color:#fff;
+    overflow-y:auto;
+}
+.brand{font-size:22px;font-weight:700;margin-bottom:6px}
+.subtitle{font-size:13px;color:#cbd5e1;margin:0 0 20px}
+.nav-title{
+    color:#94a3b8;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.09em;
+    margin:18px 9px 7px;
+}
+.sidebar a{
+    display:block;
+    text-decoration:none;
+    color:#e2e8f0;
+    padding:8px 10px;
+    margin:2px 0;
+    border-radius:7px;
+    font-size:13px;
+}
+.sidebar a:hover{background:#1e293b;color:#fff}
+.main{max-width:1120px;width:100%;margin:0 auto;padding:40px 34px 70px}
+.hero{margin-bottom:30px}
+.hero h1{font-size:34px;margin:0 0 8px}
+.hero p{color:var(--muted);margin:0;max-width:820px}
+.activity{scroll-margin-top:20px;margin:30px 0 44px}
+.activity-head{margin-bottom:15px}
+.badge{
+    display:inline-block;
+    padding:4px 8px;
+    border-radius:999px;
+    background:#ccfbf1;
+    color:#115e59;
+    font-size:11px;
+    font-weight:700;
+    margin-bottom:8px;
+}
+h2{font-size:23px;margin:0 0 7px}
+.desc{margin:0;color:var(--muted)}
+.grid{display:grid;grid-template-columns:1.05fr .95fr;gap:17px}
+.card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:13px;
+    padding:18px;
+    box-shadow:0 5px 18px rgba(15,23,42,.035);
+}
+.card h3{font-size:16px;margin:0 0 13px}
+pre{
+    background:var(--code);
+    color:var(--code-text);
+    padding:16px;
+    margin:0;
+    border-radius:9px;
+    overflow:auto;
+    white-space:pre-wrap;
+    font-size:12.5px;
+    line-height:1.55;
+}
+form{display:grid;gap:11px}
+.fields{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
+.fields.three{grid-template-columns:repeat(3,1fr)}
+.fields.four{grid-template-columns:repeat(4,1fr)}
+.fields.six{grid-template-columns:repeat(3,1fr)}
+label{font-size:12.5px;font-weight:700;display:flex;flex-direction:column;gap:5px}
+input,select{
+    width:100%;
+    padding:9px 10px;
+    border:1px solid #cbd5e1;
+    border-radius:7px;
+    font:inherit;
+    background:#fff;
+}
+button{
+    border:0;
+    border-radius:7px;
+    padding:10px 13px;
+    cursor:pointer;
+    font:inherit;
+    font-weight:700;
+}
+.btn{background:var(--primary);color:#fff}
+.btn:hover{background:var(--primary-dark)}
+.output{
+    min-height:48px;
+    border:1px dashed #cbd5e1;
+    border-radius:7px;
+    padding:11px;
+    background:#f8fafc;
+    white-space:pre-line;
+}
+.output.success{border-color:#86efac;color:var(--success);background:#f0fdf4}
+.output.error{border-color:#fca5a5;color:var(--danger);background:#fef2f2}
+.note{font-size:12px;color:var(--muted);margin:10px 0 0}
+.top{display:inline-block;margin-top:10px;font-size:12px;color:var(--primary-dark);font-weight:700;text-decoration:none}
+hr{border:0;border-top:1px solid var(--border);margin:18px 0}
+footer{border-top:1px solid var(--border);padding-top:18px;color:var(--muted);font-size:12px}
+@media(max-width:900px){
+    .layout{grid-template-columns:1fr}
+    .sidebar{position:relative;height:auto}
+    .main{padding:28px 18px 55px}
+    .grid{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+    .fields,.fields.three,.fields.four,.fields.six{grid-template-columns:1fr}
+    .hero h1{font-size:28px}
+}
+</style>
+</head>
+<body>
+
+<div class="layout" id="topo">
+<aside class="sidebar">
+    <div class="brand">Hora de Codar</div>
+    <p class="subtitle">Documentação completa + testes.</p>
+
+    <div class="nav-title">1 — Primeiros Passos</div>
+    <a href="#a11">1.1 — Fusca</a>
+    <a href="#a12">1.2 — Nome</a>
+    <a href="#a13">1.3 — Nome e idade</a>
+
+    <div class="nav-title">2 — Condicionais</div>
+    <a href="#a21">2.1 — Maior de 2</a>
+    <a href="#a22">2.2 — Positivo/negativo/zero</a>
+    <a href="#a23">2.3 — Maior de 3</a>
+    <a href="#a24">2.4 — Soma dos 2 maiores</a>
+    <a href="#a25">2.5 — Média de 6</a>
+    <a href="#a26">2.6 — Primeiro, último e maior</a>
+    <a href="#a27">2.7 — Soma menores que 72</a>
+    <a href="#a28">2.8 — Média de 4 válidos</a>
+    <a href="#a29">2.9 — Pode votar?</a>
+
+    <div class="nav-title">3 — Laços de Repetição</div>
+    <a href="#a31">3.1 — Contagem 30 a 0</a>
+    <a href="#a32">3.2 — Divisão com divisor válido</a>
+    <a href="#a33">3.3 — Média de 15 a 100</a>
+    <a href="#a34">3.4 — Média entre dois inteiros</a>
+    <a href="#a35">3.5 — Médias de alunos</a>
+    <a href="#a36">3.6 — 6 notas válidas</a>
+    <a href="#a37">3.7 — 1 até N</a>
+    <a href="#a38">3.8 — 10 maiores que 100</a>
+    <a href="#a39">3.9 — Intervalo 24 a 42</a>
+</aside>
+
+<main class="main">
+<header class="hero">
+    <h1>Documentação completa das atividades</h1>
+    <p>
+        Todas as atividades presentes no arquivo enviado, da <strong>1.1 à 3.9</strong>.
+        Cada seção traz o enunciado, uma versão em JavaScript e um espaço para testar.
+        A lógica foi mantida próxima da forma que você está estudando: <code>let</code>/<code>var</code>,
+        <code>prompt</code>, <code>parseInt</code>, <code>if</code>, <code>while</code>, <code>for</code> e arrays.
+    </p>
+</header>
+
+<!-- 1.1 -->
+<section class="activity" id="a11">
+<div class="activity-head"><span class="badge">1 — Primeiros Passos</span>
+<h2>1.1 — Crie uma variável chamada nome_do_carro, atribua "Fusca" e exiba esse valor.</h2>
+<p class="desc">Exercício de variável e saída.</p></div>
+<div class="grid">
+<div class="card"><h3>Código</h3>
+<pre><code>var nome_do_carro = "Fusca";
+alert(nome_do_carro);</code></pre></div>
+<div class="card"><h3>Testar</h3>
+<button class="btn" onclick="test11()">Executar</button>
+<div class="output" id="o11">O resultado aparecerá aqui.</div>
+<p class="note">Aqui não há entrada do usuário.</p></div>
+</div><a class="top" href="#topo">Voltar ao topo ↑</a>
+</section>
+
+<!-- 1.2 -->
+<section class="activity" id="a12">
+<div class="activity-head"><span class="badge">1 — Primeiros Passos</span>
+<h2>1.2 — Peça o nome e exiba uma saudação.</h2>
+<p class="desc">Exemplo esperado: Olá, João.</p></div>
+<div class="grid">
+<div class="card"><h3>Código</h3>
+<pre><code>let name = prompt("Olá, me informe seu nome:");
+
+alert(name + ", seja muito bem-vindo/vinda!");</code></pre></div>
+<div class="card"><h3>Testar</h3>
+<label>Nome<input id="i12" placeholder="Ex.: Thanawã"></label>
+<button class="btn" onclick="test12()">Executar</button>
+<div class="output" id="o12">O resultado aparecerá aqui.</div></div>
+</div><a class="top" href="#topo">Voltar ao topo ↑</a>
+</section>
+
+<!-- 1.3 -->
+<section class="activity" id="a13">
+<div class="activity-head"><span class="badge">1 — Primeiros Passos</span>
+<h2>1.3 — Peça nome e idade e exiba a frase.</h2>
+<p class="desc">Formato: Olá, [Nome], sua idade é [idade].</p></div>
+<div class="grid">
+<div class="card"><h3>Código</h3>
+<pre><code>let name = prompt("Insira o seu nome:");
+let age = prompt("Agora a sua idade:");
+
+alert("Olá " + name + " você tem " + age + " anos");</code></pre></div>
+<div class="card"><h3>Testar</h3>
+<div class="fields">
+<label>Nome<input id="i13n" placeholder="Ex.: João"></label>
+<label>Idade<input id="i13i" type="number" placeholder="Ex.: 20"></label>
+</div>
+<button class="btn" onclick="test13()">Executar</button>
+<div class="output" id="o13">O resultado aparecerá aqui.</div></div>
+</div><a class="top" href="#topo">Voltar ao topo ↑</a>
+</section>
+
+<!-- 2.1 -->
+<section class="activity" id="a21">
+<div class="activity-head"><span class="badge">2 — Condicionais</span>
+<h2>2.1 — Leia dois números e mostre o maior deles.</h2>
+<p class="desc">A comparação é feita com <code>if</code> e <code>else</code>.</p></div>
+<div class="grid">
+<div class="card"><h3>Código</h3>
+<pre><code>let num1 = parseInt(prompt("Digite um número"));
+let num2 = parseInt(prompt("Digite mais um número"));
+
+if (num1 &gt; num2) {
+    alert(num1 + " é maior que " + num2);
+} else {
+    alert(num2 + " é maior que " + num1);
+}</code></pre></div>
+<div class="card"><h3>Testar</h3>
+<div class="fields">
+<label>Número 1<input type="number" id="i21a"></label>
+<label>Número 2<input type="number" id="i21b"></label>
+</div>
+<button class="btn" onclick="test21()">Executar</button>
+<div class="output" id="o21">O resultado aparecerá aqui.</div></div>
+</div><a class="top" href="#topo">Voltar ao topo ↑</a>
+</section>
+
+<!-- 2.2 -->
+<section class="activity" id="a22">
+<div class="activity-head"><span class="badge">2 — Condicionais</span>
+<h2>2.2 — Diga se um valor é positivo, negativo ou zero.</h2>
+<p class="desc">Três resultados possíveis usando condicionais.</p></div>
+<div class="grid">
+<div class="card"><h3>Código</h3>
+<pre><code>let num1 = parseInt(prompt("Digite um número"));
+
+if (num1 &lt; 0) {
+    alert("O número é negativo");
+} else if (num1 == 0) {
+    alert("O número é igual a zero");
+} else {
+    alert("O número é positivo");
+}</code></pre></div>
+<div class="card"><h3>Testar</h3>
+<label>Valor<input type="number" id="i22"></label>
+<button class="btn" onclick="test22()">Executar</button>
+<div class="output" id="o22">O resultado aparecerá aqui.</div></div>
+</div><a class="top" href="#topo">Voltar ao topo ↑</a>
+</section>
+
+<!-- 2.3 -->
+<section class="activity" id="a23">
+<div class="activity-head"><span class="badge">2 — Condicionais</span>
+<h2>2.3 — Leia 3 valores diferentes e mostre o maior.</h2>
+<p class="desc">Versão baseada no seu uso de funções <code>inicio()</code> e <code>fim()</code>.</p></div>
+<div class="grid">
+<div class="card"><h3>Código</h3>
+<pre><code>function inicio() {
+
+    let num1 = parseInt(prompt("Digite um número"));
+    let num2 = parseInt(prompt("Digite mais um número"));
+    let num3 = parseInt(prompt("Agora o último número"));
+
+    fim(num1, num2, num3);
+}
+
+function fim(num1, num2, num3) {
+
+    let maior = num1;
+
+    if (num2 &gt; maior) {
+        maior = num2;
+    }
+
+    if (num3 &gt; maior) {
+        maior = num3;
+    }
+
+    alert(maior + " é o maior");
+}
+
+inicio();</code></pre></div>
+<div class="card"><h3>Testar</h3>
+<div class="fields three">
+<label>1°<input type="number" id="i23a"></label>
+<label>2°<input type="number" id="i23b"></label>
+<label>3°<input type="number" id="i23c"></label>
+</div>
+<button class="btn" onclick="test23()">Executar</button>
+<div class="output" id="o23">O resultado aparecerá aqui.</div></div>
+</div><a class="top" href="#topo">Voltar ao topo ↑</a>
+</section>
+
+<!-- 2.4 -->
+<section class="activity" id="a24">
+<div class="activity-head"><span class="badge">2 — Condicionais</span>
+<h2>2.4 — Leia 3 valores diferentes e mostre a soma dos 2 maiores.</h2>
+<p class="desc">Usando a mesma ideia de guardar os maiores valores em variáveis.</p></div>
+<div class="grid">
+<div class="card"><h3>Código</h3>
+<pre><code>let num1 = parseInt(prompt("Digite um número"));
+let num2 = parseInt(prompt("Digite mais um número"));
+let num3 = parseInt(prompt("Agora o último número"));
+
+let maior = num1;
+let segundo = num2;
+
+if (num2 &gt; maior) {
+    maior = num2;
+    segundo = num1;
+}
+
+if (num3 &gt; maior) {
+    segundo = maior;
+    maior = num3;
+} else if (num3 &gt; segundo) {
+    segundo = num3;
+}
+
+alert("Soma dos 2 maiores: " + (maior + segundo));</code></pre></div>
+<div class="card"><h3>Testar</h3>
+<div class="fields three">
+<label>1°<input type="number" id="i24a"></label>
+<label>2°<input type="number" id="i24b"></label>
+<label>3°<input type="number" id="i24c"></label>
+</div>
+<button class="btn" onclick="test24()">Executar</button>
+<div class="output" id="o24">O resultado aparecerá aqui.</div></div>
+</div><a class="top" href="#topo">Voltar ao topo ↑</a>
+</section>
+
+<!-- 2.5 -->
+<section class="activity" id="a25">
+<div class="activity-head"><span class="badge">2 — Condicionais</span>
+<h2>2.5 — Leia 6 valores, exiba todos e calcule a média aritmética.</h2>
+<p class="desc">Aqui o array facilita guardar e exibir os seis valores.</p></div>
+<div class="grid">
+<div class="card"><h3>Código</h3>
+<pre><code>function inicio() {
+
+    let num1 = parseInt(prompt("Digite o 1° número"));
+    let num2 = parseInt(prompt("Digite o 2° número"));
+    let num3 = parseInt(prompt("Digite o 3° número"));
+    let num4 = parseInt(prompt("Digite o 4° número"));
+    let num5 = parseInt(prompt("Digite o 5° número"));
+    let num6 = parseInt(prompt("Digite o 6° número"));
+
+    let numbers = [num1, num2, num3, num4, num5, num6];
+
+    let soma = 0;
+
+    for (let i = 0; i &lt; numbers.length; i++) {
+        soma += numbers[i];
+    }
+
+    let media = soma / numbers.length;
+
+    alert("Valores: " + numbers.join(", ") +
+          "\nMédia: " + media);
+}
+
+inicio();</code></pre></div>
+<div class="card"><h3>Testar</h3>
+<div class="fields six">
+<label>1<input type="number" id="i25a"></label><label>2<input type="number" id="i25b"></label>
+<label>3<input type="number" id="i25c"></label><label>4<input type="number" id="i25d"></label>
+<label>5<input type="number" id="i25e"></label><label>6<input type="number" id="i25f"></label>
+</div>
+<button class="btn" onclick="test25()">Executar</button>
+<div class="output" id="o25">O resultado aparecerá aqui.</div></div>
+</div><a class="top" href="#topo">Voltar ao topo ↑</a>
+</section>
+
+<!-- 2.6 -->
+<section class="activity" id="a26">
+<div class="activity-head"><span class="badge">2 — Condicionais • corrigida</span>
+<h2>2.6 — Leia 4 valores diferentes e informe apenas o primeiro, o último e o maior deles.</h2>
+<p class="desc">A correção evita tentar prever todas as combinações possíveis. A variável <code>maior</code> começa com o primeiro número e vai sendo atualizada.</p></div>
+<div class="grid">
+<div class="card"><h3>Código corrigido</h3>
+<pre><code>function inicio() {
+
+    let num1 = parseInt(prompt("Digite um número"));
+    let num2 = parseInt(prompt("Digite outro número"));
+    let num3 = parseInt(prompt("Penultimo número"));
+    let num4 = parseInt(prompt("E o último número"));
+
+    fim(num1, num2, num3, num4);
+}
+
+function fim(num1, num2, num3, num4) {
+
+    let maior = num1;
+
+    if (num2 &gt; maior) {
+        maior = num2;
+    }
+
+    if (num3 &gt; maior) {
+        maior = num3;
+    }
+
+    if (num4 &gt; maior) {
+        maior = num4;
+    }
+
+    alert("1° é: " + num1 +
+          " | 4° é: " + num4 +
+          " | Maior é: " + maior);
+}
+
+inicio();</code></pre></div>
+<div class="card"><h3>Testar</h3>
+<div class="fields four">
+<label>1°<input type="number" id="i26a"></label><label>2°<input type="number" id="i26b"></label>
+<label>3°<input type="number" id="i26c"></label><label>4°<input type="number" id="i26d"></label>
+</div>
+<button class="btn" onclick="test26()">Executar</button>
+<div class="output" id="o26">O resultado aparecerá aqui.</div>
+<p class="note">Os quatro valores devem ser diferentes, como pede o enunciado.</p></div>
+</div><a class="top" href="#topo">Voltar ao topo ↑</a>
+</section>
+
+<!-- 2.7 -->
+<section class="activity" id="a27">
+<div class="activity-head"><span class="badge">2 — Condicionais + repetição</span>
+<h2>2.7 — Leia 6 números. Some apenas os valores menores que 72. Exiba a soma e todos os valores informados.</h2>
+<p class="desc">Versão corrigida da atividade: a função precisa devolver os números para o processamento. O array é criado dentro do fluxo principal.</p></div>
+<div class="grid">
+<div class="card"><h3>Código corrigido</h3>
+<pre><code>function inicio() {
+
+    let num1 = parseInt(prompt("Digite o 1° número"));
+    let num2 = parseInt(prompt("Digite o 2° número"));
+    let num3 = parseInt(prompt("Digite o 3° número"));
+    let num4 = parseInt(prompt("Digite o 4° número"));
+    let num5 = parseInt(prompt("Digite o 5° número"));
+    let num6 = parseInt(prompt("Digite o 6° número"));
+
+    let numbers = [num1, num2, num3, num4, num5, num6];
+    let soma = 0;
+
+    for (let i = 0; i &lt; numbers.length; i++) {
+
+        if (numbers[i] &lt; 72) {
+            soma += numbers[i];
+        }
+    }
+
+    alert("Valores: " + numbers.join(", ") +
+          "\nSoma dos menores que 72: " + soma);
+}
+
+inicio();</code></pre></div>
+<div class="card"><h3>Testar</h3>
+<div class="fields six">
+<label>1<input type="number" id="i27a"></label><label>2<input type="number" id="i27b"></label>
+<label>3<input type="number" id="i27c"></label><label>4<input type="number" id="i27d"></label>
+<label>5<input type="number" id="i27e"></label><label>6<input type="number" id="i27f"></label>
+</div>
+<button class="btn" onclick="test27()">Executar</button>
+<div class="output" id="o27">O resultado aparecerá aqui.</div></div>
+</div><a class="top" href="#topo">Voltar ao topo ↑</a>
+</section>
+
+<!-- 2.8 -->
+<section class="activity" id="a28">
+<div class="activity-head"><span class="badge">2 — Condicionais + repetição</span>
+<h2>2.8 — Leia 4 números, aceitando apenas valores maiores que 0 e menores que 10. Calcule a média e informe se passou.</h2>
+<p class="desc">A regra final do enunciado é: média maior que 5 → passou; caso contrário → tente novamente.</p></div>
+<div class="grid">
+<div class="card"><h3>Código</h3>
+<pre><code>let numeros = [];
+let soma = 0;
+
+for (let i = 0; i &lt; 4; i++) {
+
+    let num = parseInt(prompt("Digite um número"));
+
+    while (num &lt;= 0 || num &gt;= 10) {
+        num = parseInt(prompt("Digite um número válido"));
+    }
+
+    numeros.push(num);
+    soma += num;
+}
+
+let media = soma / numeros.length;
+
+if (media &gt; 5) {
+    alert("Você passou no teste");
+} else {
+    alert("Tente novamente");
+}</code></pre></div>
+<div class="card"><h3>Testar</h3>
+<div class="fields four">
+<label>1<input type="number" id="i28a"></label><label>2<input type="number" id="i28b"></label>
+<label>3<input type="number" id="i28c"></label><label>4<input type="number" id="i28d"></label>
+</div>
+<button class="btn" onclick="test28()">Executar</button>
+<div class="output" id="o28">O resultado aparecerá aqui.</div>
+<p class="note">Valores válidos ficam entre 0 e 10, sem incluir 0 e 10.</p></div>
+</div><a class="top" href="#topo">Voltar ao topo ↑</a>
+</section>
+
+<!-- 2.9 -->
+<section class="activity" id="a29">
+<div class="activity-head"><span class="badge">2 — Condicionais</span>
+<h2>2.9 — Leia o ano de nascimento e informe se a pessoa pode votar no ano atual.</h2>
+<p class="desc">O código usa o ano atual do computador e não considera mês/dia, como pede o enunciado.</p></div>
+<div class="grid">
+<div class="card"><h3>Código</h3>
+<pre><code>const hoje = new Date();
+const anoAtual = hoje.getFullYear();
+
+let data_nasc = parseInt(
+    prompt("Qual o ano do seu nascimento?")
+);
+
+let idade = anoAtual - data_nasc;
+
+if (idade &gt;= 16) {
+    alert("Você já pode votar!");
+} else {
+    alert("Você ainda não pode votar!");
+}</code></pre></div>
+<div class="card"><h3>Testar</h3>
+<label>Ano de nascimento<input type="number" id="i29"></label>
+<button class="btn" onclick="test29()">Executar</button>
+<div class="output" id="o29">O resultado aparecerá aqui.</div></div>
+</div><a class="top" href="#topo">Voltar ao topo ↑</a>
+</section>
+
+<!-- 3.1 -->
+<section class="activity" id="a31">
+<div class="activity-head"><span class="badge">3 — Laços de Repetição</span>
+<h2>3.1 — Faça uma contagem regressiva de 30 até 0 e, ao final, escreva EXPLOSÃO.</h2>
+<p class="desc">O <code>for</code> começa em 30 e diminui 1 a cada repetição.</p></div>
+<div class="grid">
+<div class="card"><h3>Código</h3>
+<pre><code>for (let i = 30; i &gt; -1; i--) {
+    console.log(i);
+}
+
+alert("EXPLOSÃO💥");</code></pre></div>
+<div class="card"><h3>Testar</h3>
+<button class="btn" onclick="test31()">Executar</button>
+<div class="output" id="o31">Clique em executar.</div></div>
+</div><a class="top" href="#topo">Voltar ao topo ↑</a>
+</section>
+
+<!-- 3.2 -->
+<section class="activity" id="a32">
+<div class="activity-head"><span class="badge">3 — Laços de Repetição</span>
+<h2>3.2 — Leia dois valores. Enquanto o segundo for menor ou igual a zero, peça novamente. Ao final, mostre a divisão.</h2>
+<p class="desc">O <code>while</code> fica responsável por impedir uma divisão por zero ou por valor negativo.</p></div>
+<div class="grid">
+<div class="card"><h3>Código</h3>
+<pre><code>let num1 = parseInt(prompt("Escolha um número"));
+let num2 = parseInt(prompt("Escolha mais um número"));
+
+while (num2 &lt;= 0) {
+    num2 = parseInt(
+        prompt("Escolha um número válido")
+    );
+}
+
+alert(num1 / num2 + " é a divisão");</code></pre></div>
+<div class="card"><h3>Testar</h3>
+<div class="fields">
+<label>Primeiro valor<input type="number" id="i32a"></label>
+<label>Segundo valor<input type="number" id="i32b"></label>
+</div>
+<button class="btn" onclick="test32()">Executar</button>
+<div class="output" id="o32">O resultado aparecerá aqui.</div></div>
+</div><a class="top" href="#topo">Voltar ao topo ↑</a>
+</section>
+
+<!-- 3.3 -->
+<section class="activity" id="a33">
+<div class="activity-head"><span class="badge">3 — Laços de Repetição</span>
+<h2>3.3 — Calcule e exiba a média aritmética dos números inteiros de 15 a 100.</h2>
+<p class="desc">O contador percorre 15, 16, 17... até 100.</p></div>
+<div class="grid">
+<div class="card"><h3>Código</h3>
+<pre><code>var soma = 0;
+var lista = 0;
+
+for (let i = 15; i &lt; 101; i++) {
+
+    soma += i;
+    lista += 1;
+}
+
+var media = soma / lista;
+
+alert(media);</code></pre></div>
+<div class="card"><h3>Testar</h3>
+<button class="btn" onclick="test33()">Executar</button>
+<div class="output" id="o33">Clique em executar.</div></div>
+</div><a class="top" href="#topo">Voltar ao topo ↑</a>
+</section>
+
+<!-- 3.4 -->
+<section class="activity" id="a34">
+<div class="activity-head"><span class="badge">3 — Laços de Repetição</span>
+<h2>3.4 — Leia dois inteiros (primeiro menor) e calcule a média deles e dos inteiros entre eles.</h2>
+<p class="desc">Ex.: 4 e 6 → média de 4, 5 e 6.</p></div>
+<div class="grid">
+<div class="card"><h3>Código</h3>
+<pre><code>var num1 = parseInt(prompt("Me diga um número"));
+var limit = parseInt(prompt("Mais um número"));
+
+var soma = 0;
+var lista = 0;
+
+for (let i = num1; i &lt; (limit + 1); i++) {
+
+    soma += i;
+    lista += 1;
+}
+
+let media = soma / lista;
+
+alert(media);</code></pre></div>
+<div class="card"><h3>Testar</h3>
+<div class="fields">
+<label>Primeiro (menor)<input type="number" id="i34a"></label>
+<label>Segundo (maior)<input type="number" id="i34b"></label>
+</div>
+<button class="btn" onclick="test34()">Executar</button>
+<div class="output" id="o34">O resultado aparecerá aqui.</div></div>
+</div><a class="top" href="#topo">Voltar ao topo ↑</a>
+</section>
+
+<!-- 3.5 -->
+<section class="activity" id="a35">
+<div class="activity-head"><span class="badge">3 — Laços de Repetição</span>
+<h2>3.5 — Leia 2 notas, calcule a média, considere aprovação com 9,5 e repita para outro aluno quando a resposta for S.</h2>
+<p class="desc">A documentação mantém a ideia de função para calcular cada aluno e adiciona o contador de aprovados.</p></div>
+<div class="grid">
+<div class="card"><h3>Código corrigido/completo</h3>
+<pre><code>var aprovados = 0;
+var continuar = "S";
+
+function nota() {
+
+    let nota1 = parseInt(prompt("Digite a primeira nota:"));
+    let nota2 = parseInt(prompt("Digite a segunda nota:"));
+
+    let media = (nota1 + nota2) / 2;
+
+    if (media &gt;= 9.5) {
+        alert("Você passou! Média: " + media);
+        aprovados += 1;
+    } else {
+        alert("Sua média ficou abaixo de 9.5: " + media);
+    }
+}
+
+while (continuar == "S") {
+
+    nota();
+
+    continuar = prompt(
+        "Calcular a média de outro aluno? (S/N)"
+    ).toUpperCase();
+
+    while (continuar != "S" &amp;&amp; continuar != "N") {
+        continuar = prompt(
+            "Digite uma resposta válida [S/N]"
+        ).toUpperCase();
+    }
+}
+
+alert("Quantidade de alunos aprovados: " + aprovados);</code></pre></div>
+<div class="card"><h3>Testar</h3>
+<div class="fields">
+<label>Nota 1<input type="number" id="i35a" step="0.1"></label>
+<label>Nota 2<input type="number" id="i35b" step="0.1"></label>
+</div>
+<label>Adicionar outro aluno?
+<select id="i35c">
+<option value="N">Não</option>
+<option value="S">Sim</option>
+</select></label>
+<button class="btn" onclick="test35()">Executar teste</button>
+<div class="output" id="o35">O teste desta página usa um aluno por vez; a lógica completa está no código ao lado.</div>
+<p class="note">No programa original, quando a resposta é S, o processo volta para a leitura das duas notas.</p></div>
+</div><a class="top" href="#topo">Voltar ao topo ↑</a>
+</section>
+
+<!-- 3.6 -->
+<section class="activity" id="a36">
+<div class="activity-head"><span class="badge">3 — Laços de Repetição</span>
+<h2>3.6 — Leia 6 notas válidas (de 0 a 10), calcule e exiba a média simples.</h2>
+<p class="desc">Cada nota é validada e depois entra no array e na soma.</p></div>
+<div class="grid">
+<div class="card"><h3>Código</h3>
+<pre><code>var notas = [];
+var soma = 0;
+
+for (let i = 0; i &lt; 6; i++) {
+
+    var nota = parseInt(
+        prompt("Digite a nota " + (i + 1))
+    );
+
+    while (nota &lt; 0 || nota &gt; 10) {
+        nota = parseInt(
+            prompt("Digite uma nota válida de 0 a 10")
+        );
+    }
+
+    notas.push(nota);
+    soma += nota;
+}
+
+var media = soma / notas.length;
+
+alert("A média das notas é: " + media);</code></pre></div>
+<div class="card"><h3>Testar</h3>
+<div class="fields six">
+<label>1<input type="number" id="i36a"></label><label>2<input type="number" id="i36b"></label>
+<label>3<input type="number" id="i36c"></label><label>4<input type="number" id="i36d"></label>
+<label>5<input type="number" id="i36e"></label><label>6<input type="number" id="i36f"></label>
+</div>
+<button class="btn" onclick="test36()">Executar</button>
+<div class="output" id="o36">O resultado aparecerá aqui.</div></div>
+</div><a class="top" href="#topo">Voltar ao topo ↑</a>
+</section>
+
+<!-- 3.7 -->
+<section class="activity" id="a37">
+<div class="activity-head"><span class="badge">3 — Laços de Repetição</span>
+<h2>3.7 — Leia um valor N (N &gt; 0) e imprima todos os inteiros de 1 até N.</h2>
+<p class="desc">Primeiro valida com <code>while</code>; depois percorre de 1 até N com <code>for</code>.</p></div>
+<div class="grid">
+<div class="card"><h3>Código</h3>
+<pre><code>var num = parseInt(
+    prompt("Digite um número maior que 0")
+);
+
+while (num &lt;= 0) {
+    num = parseInt(
+        prompt("Digite um número válido maior que 0")
+    );
+}
+
+for (let i = 1; i &lt;= num; i++) {
+    console.log(i);
+}</code></pre></div>
+<div class="card"><h3>Testar</h3>
+<label>Valor de N<input type="number" id="i37"></label>
+<button class="btn" onclick="test37()">Executar</button>
+<div class="output" id="o37">O resultado aparecerá aqui.</div></div>
+</div><a class="top" href="#topo">Voltar ao topo ↑</a>
+</section>
+
+<!-- 3.8 -->
+<section class="activity" id="a38">
+<div class="activity-head"><span class="badge">3 — Laços de Repetição</span>
+<h2>3.8 — Imprima os 10 primeiros números inteiros maiores que 100.</h2>
+<p class="desc">São os números de 101 até 110.</p></div>
+<div class="grid">
+<div class="card"><h3>Código</h3>
+<pre><code>for (let i = 101; i &lt;= 110; i++) {
+    console.log(i);
+}</code></pre></div>
+<div class="card"><h3>Testar</h3>
+<button class="btn" onclick="test38()">Executar</button>
+<div class="output" id="o38">Clique em executar.</div></div>
+</div><a class="top" href="#topo">Voltar ao topo ↑</a>
+</section>
+
+<!-- 3.9 -->
+<section class="activity" id="a39">
+<div class="activity-head"><span class="badge">3 — Laços + condicionais</span>
+<h2>3.9 — Leia 10 valores e informe quantos estão no intervalo de 24 a 42 e quantos estão fora.</h2>
+<p class="desc">Os limites 24 e 42 são inclusivos.</p></div>
+<div class="grid">
+<div class="card"><h3>Código</h3>
+<pre><code>var dentro = 0;
+var fora = 0;
+
+for (let i = 0; i &lt; 10; i++) {
+
+    var num = parseInt(
+        prompt("Digite o " + (i + 1) + "° número")
+    );
+
+    if (num &gt;= 24 &amp;&amp; num &lt;= 42) {
+        dentro += 1;
+    } else {
+        fora += 1;
+    }
+}
+
+alert("Quantidade dentro do intervalo: " + dentro +
+      "\nQuantidade fora do intervalo: " + fora);</code></pre></div>
+<div class="card"><h3>Testar</h3>
+<div class="fields six">
+<label>1<input type="number" id="i39a"></label><label>2<input type="number" id="i39b"></label>
+<label>3<input type="number" id="i39c"></label><label>4<input type="number" id="i39d"></label>
+<label>5<input type="number" id="i39e"></label><label>6<input type="number" id="i39f"></label>
+<label>7<input type="number" id="i39g"></label><label>8<input type="number" id="i39h"></label>
+<label>9<input type="number" id="i39i"></label><label>10<input type="number" id="i39j"></label>
+</div>
+<button class="btn" onclick="test39()">Executar</button>
+<div class="output" id="o39">O resultado aparecerá aqui.</div></div>
+</div><a class="top" href="#topo">Voltar ao topo ↑</a>
+</section>
+
+<footer>
+    Documentação interativa criada a partir das atividades enviadas no arquivo “Texto colado.txt”.
+    Exercícios extras opcionais e o desafio final não foram tratados como atividades numeradas porque não possuem numeração própria no material.
+</footer>
+</main>
+</div>
+
+<script>
+function num(id){
+    return Number(document.getElementById(id).value);
+}
+function required(id){
+    return document.getElementById(id).value !== "";
+}
+function out(id,msg,type="success"){
+    const el=document.getElementById(id);
+    el.textContent=msg;
+    el.className="output "+type;
+}
+
+function test11(){ out("o11",'Fusca'); }
+
+function test12(){
+    const n=document.getElementById("i12").value.trim();
+    if(!n){out("o12","Digite um nome.","error");return;}
+    out("o12",n+", seja muito bem-vindo/vinda!");
+}
+
+function test13(){
+    const n=document.getElementById("i13n").value.trim();
+    const i=document.getElementById("i13i").value;
+    if(!n||i===""){out("o13","Preencha nome e idade.","error");return;}
+    out("o13","Olá "+n+" você tem "+i+" anos");
+}
+
+function test21(){
+    if(!required("i21a")||!required("i21b")){out("o21","Preencha os dois números.","error");return;}
+    const a=num("i21a"),b=num("i21b");
+    if(a===b) out("o21","Os dois números são iguais.");
+    else out("o21",(a>b?a:b)+" é o maior.");
+}
+
+function test22(){
+    if(!required("i22")){out("o22","Digite um valor.","error");return;}
+    const a=num("i22");
+    out("o22",a<0?"O número é negativo":a===0?"O número é igual a zero":"O número é positivo");
+}
+
+function test23(){
+    const ids=["i23a","i23b","i23c"];
+    if(ids.some(x=>!required(x))){out("o23","Preencha os três números.","error");return;}
+    const v=ids.map(num),m=Math.max(...v);
+    out("o23",m+" é o maior");
+}
+
+function test24(){
+    const ids=["i24a","i24b","i24c"];
+    if(ids.some(x=>!required(x))){out("o24","Preencha os três números.","error");return;}
+    const v=ids.map(num).sort((a,b)=>b-a);
+    out("o24","Soma dos 2 maiores: "+(v[0]+v[1]));
+}
+
+function test25(){
+    const ids=["i25a","i25b","i25c","i25d","i25e","i25f"];
+    if(ids.some(x=>!required(x))){out("o25","Preencha os seis valores.","error");return;}
+    const v=ids.map(num),s=v.reduce((a,b)=>a+b,0),m=s/v.length;
+    out("o25","Valores: "+v.join(", ")+"\nMédia: "+m);
+}
+
+function test26(){
+    const ids=["i26a","i26b","i26c","i26d"];
+    if(ids.some(x=>!required(x))){out("o26","Preencha os quatro valores.","error");return;}
+    const v=ids.map(num);
+    const iguais=new Set(v).size!==4;
+    if(iguais){out("o26","O enunciado pede quatro valores diferentes.","error");return;}
+    out("o26","1° é: "+v[0]+"\n4° é: "+v[3]+"\nMaior é: "+Math.max(...v));
+}
+
+function test27(){
+    const ids=["i27a","i27b","i27c","i27d","i27e","i27f"];
+    if(ids.some(x=>!required(x))){out("o27","Preencha os seis números.","error");return;}
+    const v=ids.map(num);
+    const s=v.filter(x=>x<72).reduce((a,b)=>a+b,0);
+    out("o27","Valores: "+v.join(", ")+"\nSoma dos menores que 72: "+s);
+}
+
+function test28(){
+    const ids=["i28a","i28b","i28c","i28d"];
+    if(ids.some(x=>!required(x))){out("o28","Preencha os quatro números.","error");return;}
+    const v=ids.map(num);
+    if(v.some(x=>x<=0||x>=10)){out("o28","Todos os valores devem ser maiores que 0 e menores que 10.","error");return;}
+    const media=v.reduce((a,b)=>a+b,0)/4;
+    out("o28","Valores: "+v.join(", ")+"\nMédia: "+media+"\n"+(media>5?"Você passou no teste":"Tente novamente"));
+}
+
+function test29(){
+    if(!required("i29")){out("o29","Digite o ano de nascimento.","error");return;}
+    const ano=Number(document.getElementById("i29").value);
+    const atual=new Date().getFullYear();
+    const idade=atual-ano;
+    out("o29","Ano atual: "+atual+"\nIdade calculada: "+idade+"\n"+(idade>=16?"Você já pode votar!":"Você ainda não pode votar!"));
+}
+
+function test31(){
+    let v=[];
+    for(let i=30;i>-1;i--){v.push(i);}
+    v.push("EXPLOSÃO💥");
+    out("o31",v.join(" — "));
+}
+
+function test32(){
+    if(!required("i32a")||!required("i32b")){out("o32","Preencha os dois valores.","error");return;}
+    const a=num("i32a"),b=num("i32b");
+    if(b<=0){out("o32","O segundo valor precisa ser maior que 0.","error");return;}
+    out("o32",a/b+" é a divisão");
+}
+
+function test33(){
+    let soma=0,quant=0;
+    for(let i=15;i<=100;i++){soma+=i;quant++;}
+    out("o33","Soma: "+soma+"\nQuantidade: "+quant+"\nMédia: "+(soma/quant));
+}
+
+function test34(){
+    if(!required("i34a")||!required("i34b")){out("o34","Preencha os dois inteiros.","error");return;}
+    const a=Math.trunc(num("i34a")),b=Math.trunc(num("i34b"));
+    if(a>=b){out("o34","O primeiro número deve ser menor que o segundo.","error");return;}
+    let soma=0,quant=0;
+    for(let i=a;i<=b;i++){soma+=i;quant++;}
+    out("o34","Média: "+(soma/quant)+"\nSoma: "+soma+"\nQuantidade: "+quant);
+}
+
+function test35(){
+    if(!required("i35a")||!required("i35b")){out("o35","Preencha as duas notas.","error");return;}
+    const a=num("i35a"),b=num("i35b"),m=(a+b)/2;
+    out("o35","Média: "+m+"\n"+(m>=9.5?"Aluno aprovado.":"Aluno não aprovado.")+"\nNa versão completa, a rotina pode ser repetida enquanto a resposta for S.");
+}
+
+function test36(){
+    const ids=["i36a","i36b","i36c","i36d","i36e","i36f"];
+    if(ids.some(x=>!required(x))){out("o36","Preencha as seis notas.","error");return;}
+    const v=ids.map(num);
+    if(v.some(x=>x<0||x>10)){out("o36","Todas as notas devem estar entre 0 e 10.","error");return;}
+    const s=v.reduce((a,b)=>a+b,0),m=s/v.length;
+    out("o36","Notas: "+v.join(", ")+"\nSoma: "+s+"\nMédia: "+m);
+}
+
+function test37(){
+    if(!required("i37")){out("o37","Digite N.","error");return;}
+    const n=Math.trunc(num("i37"));
+    if(n<=0){out("o37","N deve ser maior que 0.","error");return;}
+    let v=[];
+    for(let i=1;i<=n;i++){v.push(i);}
+    out("o37",v.join(" — "));
+}
+
+function test38(){
+    let v=[];
+    for(let i=101;i<=110;i++){v.push(i);}
+    out("o38",v.join(" — "));
+}
+
+function test39(){
+    const ids=["i39a","i39b","i39c","i39d","i39e","i39f","i39g","i39h","i39i","i39j"];
+    if(ids.some(x=>!required(x))){out("o39","Preencha os dez valores.","error");return;}
+    const v=ids.map(num);
+    let dentro=0,fora=0;
+    for(let i=0;i<v.length;i++){
+        if(v[i]>=24&&v[i]<=42){dentro++;}else{fora++;}
+    }
+    out("o39","Valores: "+v.join(", ")+"\nDentro do intervalo (24 a 42): "+dentro+"\nFora do intervalo: "+fora);
+}
+</script>
+</body>
+</html>
